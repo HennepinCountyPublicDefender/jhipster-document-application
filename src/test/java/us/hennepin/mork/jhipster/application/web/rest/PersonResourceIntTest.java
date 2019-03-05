@@ -50,6 +50,9 @@ public class PersonResourceIntTest {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private DocumentMapper documentMapper;
+    
     /**
      * This repository is mocked in the us.hennepin.mork.jhipster.application.repository.search test package.
      *
@@ -80,7 +83,7 @@ public class PersonResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PersonResource personResource = new PersonResource(personRepository, mockPersonSearchRepository);
+        final PersonResource personResource = new PersonResource(personRepository, documentMapper);
         this.restPersonMockMvc = MockMvcBuilders.standaloneSetup(personResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

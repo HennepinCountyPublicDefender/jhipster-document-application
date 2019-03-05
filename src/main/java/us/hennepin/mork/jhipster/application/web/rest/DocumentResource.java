@@ -26,6 +26,9 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
  */
 @RestController
 @RequestMapping("/api")
+@EntityGraph(attributePaths = "content")
+Optional<Document> findOneById(Long id);
+
 public class DocumentResource {
 
     private final Logger log = LoggerFactory.getLogger(DocumentResource.class);
@@ -105,6 +108,18 @@ public class DocumentResource {
         log.debug("REST request to get Document : {}", id);
         Optional<Document> document = documentRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(document);
+    }
+    
+    @GetMapping("/documents/{id}/$content")
+    @Timed
+    public ResponseEntity<byte[]> getDocumentContent(@PathVariable Long id) {
+        Document document = documentRepository.findOneById(id)
+            .orElseThrow(DocumentNotFoundException::new);
+        
+        return ResponseEntity.ok()
+            .contentType(MediaType.parseMediaType(document.getMimeType()))
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + document.getTitle() + "\"")
+            .body(document.retrieveContent());
     }
 
     /**
