@@ -38,6 +38,10 @@ public class CacheConfiguration {
             cm.createCache(us.hennepin.mork.jhipster.application.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(us.hennepin.mork.jhipster.application.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(us.hennepin.mork.jhipster.application.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(us.hennepin.mork.jhipster.application.domain.Person.class.getName(), jcacheConfiguration);
+            cm.createCache(us.hennepin.mork.jhipster.application.domain.Person.class.getName() + ".documents", jcacheConfiguration);
+            cm.createCache(us.hennepin.mork.jhipster.application.domain.Document.class.getName(), jcacheConfiguration);
+            cm.createCache(us.hennepin.mork.jhipster.application.domain.Content.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
