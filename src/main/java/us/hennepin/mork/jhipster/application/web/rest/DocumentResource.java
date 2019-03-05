@@ -109,6 +109,18 @@ public class DocumentResource {
         Optional<Document> document = documentRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(document);
     }
+    
+    @GetMapping("/documents/{id}/$content")
+    @Timed
+    public ResponseEntity<byte[]> getDocumentContent(@PathVariable Long id) {
+        Document document = documentRepository.findOneById(id)
+            .orElseThrow(DocumentNotFoundException::new);
+        
+        return ResponseEntity.ok()
+            .contentType(MediaType.parseMediaType(document.getMimeType()))
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + document.getTitle() + "\"")
+            .body(document.retrieveContent());
+    }
 
     /**
      * DELETE  /documents/:id : delete the "id" document.
