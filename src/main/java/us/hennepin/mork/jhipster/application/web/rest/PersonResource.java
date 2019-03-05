@@ -135,5 +135,22 @@ public class PersonResource {
             .stream(personSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
+    
+    @PostMapping("/v2/people")
+    @Timed
+    public ResponseEntity<Person> createPerson(@Valid @RequestPart Person person, @RequestPart List<MultipartFile> files) throws URISyntaxException, IOException {
+        log.debug("REST request to save Person : {}", person);
+        if (person.getID() !=null) {
+            throw new BadRequestAlertException("A new person cannot already have an ID", ENTITY_NAME, "id exists");
+        }
+        
+        Set<Document> documents = documentMapper.multiPartFilesToDocuments(files);
+        documents.forEach(person::addDocument);
+        
+        Person result = personRepository.save(person);
+        return ResponseEntity.created(new URI("/api/people/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
 
 }
