@@ -26,6 +26,9 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
  */
 @RestController
 @RequestMapping("/api")
+@EntityGraph(attributePaths = "content")
+Optional<Document> findOneById(Long id);
+
 public class DocumentResource {
 
     private final Logger log = LoggerFactory.getLogger(DocumentResource.class);
