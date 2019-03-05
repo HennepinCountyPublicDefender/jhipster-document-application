@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "jhipsterDocumentApplication",
+    "packageName": "us.hennepin.mork.jhipster.application",
+    "packageFolder": "us/hennepin/mork/jhipster/application",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mariadb",
+    "searchEngine": "elasticsearch",
+    "enableSwaggerCodegen": false,
+    "messageBroker": "kafka",
+    "buildTool": "maven",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "enableTranslation": false,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "5.8.2",
+    "jwtSecretKey": "OWM5NTk0OWVmMjIzYmI4ODAwMDVjNjIwMzhmNTgzYjkzNjc4ZmU1ZGVhMGYxMzFiNDRlYjMyOTMyMzUyYmZlNmY4Yjk5NjQzODM1YmFiZjFiZmU4ZmNmZDViZmJkNTJiYmQ4NDhmN2JjNmE2NmU5MmY2NjZkMjMxNjM5NjZiMTQ=",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
+  },
+  "git-provider": "GitHub",
+  "git-company": "HennepinCountyPublicDefender",
+  "repository-name": "jhipster-document-application"
+}
